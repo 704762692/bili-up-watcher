@@ -40,6 +40,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/state.json
+          git add data/state.json 2>/dev/null || echo "(状态文件尚未生成,本次抓取失败属正常,跳过提交)"
           git diff --cached --quiet || git commit -m "update watch state"
           git push
+
